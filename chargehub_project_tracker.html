@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChargeHub – SEO Project Tracker</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a18; padding: 24px; max-width: 1000px; margin: 0 auto; }
+
+    .report-header { margin-bottom: 24px; border-bottom: 1px solid #e8e6e2; padding-bottom: 16px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+    h1 { font-size: 18px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+    .report-meta { font-size: 12px; color: #8a8880; }
+
+    /* Filter bar */
+    .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-btn { padding: 6px 14px; font-size: 12px; font-weight: 500; border-radius: 6px; cursor: pointer; border: 0.5px solid #d4d2cc; background: transparent; color: #5F5E5A; transition: all .15s; font-family: inherit; }
+    .filter-btn:hover { background: #f5f4f2; }
+    .filter-btn.active { background: #e8f0fb; color: #185FA5; border-color: #adc8ee; }
+
+    /* Summary metrics */
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 24px; }
+    .metric { background: #f5f4f2; border-radius: 8px; padding: 12px 14px; }
+    .metric .label { font-size: 11px; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; }
+    .metric .val { font-size: 22px; font-weight: 500; margin-top: 2px; }
+    .metric .val.green { color: #1D9E75; }
+    .metric .val.blue { color: #185FA5; }
+    .metric .val.orange { color: #D97706; }
+    .metric .sub { font-size: 11px; color: #5F5E5A; margin-top: 1px; }
+
+    /* Project table */
+    .table-wrap { overflow-x: auto; }
+    .project-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .project-table th { text-align: left; font-size: 11px; font-weight: 500; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; padding: 8px 12px; border-bottom: 1px solid #e8e6e2; white-space: nowrap; }
+    .project-table td { padding: 11px 12px; border-bottom: 1px solid #f0ede8; color: #3a3a38; vertical-align: middle; }
+    .project-table tr:last-child td { border-bottom: none; }
+    .project-table tr:hover td { background: #fafaf8; }
+    .project-table tr.hidden { display: none; }
+
+    /* Status circles */
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; flex-shrink: 0; }
+    .status-dot.green { background: #1D9E75; }
+    .status-dot.yellow { background: #F59E0B; }
+    .status-dot.red { background: #DC2626; }
+    .status-dot.grey { background: #B4B2A9; }
+    .status-cell { display: flex; align-items: center; white-space: nowrap; }
+
+    /* Badges */
+    .badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
+    .badge.completed { background: #E1F5EE; color: #0F6E56; }
+    .badge.in-progress { background: #FEF3C7; color: #92400E; }
+    .badge.planned { background: #E8F0FB; color: #185FA5; }
+    .badge.cat { background: #f5f4f2; color: #5F5E5A; }
+
+    .section-label { font-size: 11px; font-weight: 500; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; margin: 20px 0 10px; }
+  </style>
+</head>
+<body>
+
+  <div class="report-header">
+    <div>
+      <h1>SEO Project Tracker</h1>
+      <div class="report-meta">ChargeHub · Web Performance & Growth · Updated Q2 2026</div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all')">All</button>
+      <button class="filter-btn" onclick="filterProjects('completed')">Completed</button>
+      <button class="filter-btn" onclick="filterProjects('in-progress')">In Progress</button>
+      <button class="filter-btn" onclick="filterProjects('planned')">Planned</button>
+    </div>
+  </div>
+
+  <div class="metric-grid">
+    <div class="metric"><div class="label">Total Projects</div><div class="val blue">14</div><div class="sub">Across all categories</div></div>
+    <div class="metric"><div class="label">Completed</div><div class="val green">8</div><div class="sub">Q1–Q2 2026</div></div>
+    <div class="metric"><div class="label">In Progress</div><div class="val orange">4</div><div class="sub">Active this quarter</div></div>
+    <div class="metric"><div class="label">Planned</div><div class="val blue">2</div><div class="sub">Next quarter</div></div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="project-table">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Period</th>
+          <th>Result / Next Steps</th>
+        </tr>
+      </thead>
+      <tbody id="project-tbody">
+
+        <!-- COMPLETED -->
+        <tr data-status="completed">
+          <td><strong>301 Redirect Loop Fixes</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>8 loops resolved, cleaner crawl path</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>404 Fix — Blog Pages</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>Broken blog URLs redirected to live content</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>404 Fix — Guide Pages</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>Guide URLs redirected to updated equivalents</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>404 Fix — Country Pages</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>Country pages redirected to active regions</td>
+        </tr>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>404 Fix — Station Pages</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>Station URLs redirected to nearest live pages</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>Mobile Page Speed Optimization</strong></td>
+          <td><span class="badge cat">Performance</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>+22 pts avg mobile score, LCP 4.1s → 2.3s</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>Desktop Page Speed Optimization</strong></td>
+          <td><span class="badge cat">Performance</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1 2026</td>
+          <td>+17 pts avg desktop score, SEO score 98</td>
+        </tr>
+
+        <tr data-status="completed">
+          <td><strong>AI Internal Tools Suite (5 tools)</strong></td>
+          <td><span class="badge cat">AI / Ops</span></td>
+          <td><div class="status-cell"><span class="status-dot green"></span><span class="badge completed">Completed</span></div></td>
+          <td>Q1–Q2 2026</td>
+          <td>~40h/month saved, 8 tasks automated</td>
+        </tr>
+
+        <!-- IN PROGRESS -->
+        <tr data-status="in-progress">
+          <td><strong>Mobile Usability Errors</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot yellow"></span><span class="badge in-progress">In Progress</span></div></td>
+          <td>Q2 2026</td>
+          <td>Fixing tap target sizes and viewport issues on 9 pages to improve mobile rankings</td>
+        </tr>
+
+        <tr data-status="in-progress">
+          <td><strong>Core Web Vitals — Remaining Metrics</strong></td>
+          <td><span class="badge cat">Performance</span></td>
+          <td><div class="status-cell"><span class="status-dot yellow"></span><span class="badge in-progress">In Progress</span></div></td>
+          <td>Q2 2026</td>
+          <td>Addressing INP and render-blocking resources — 4 metrics remaining to hit passing threshold</td>
+        </tr>
+
+        <tr data-status="in-progress">
+          <td><strong>Hreflang EN/FR Alignment</strong></td>
+          <td><span class="badge cat">SEO / Bilingual</span></td>
+          <td><div class="status-cell"><span class="status-dot yellow"></span><span class="badge in-progress">In Progress</span></div></td>
+          <td>Q2 2026</td>
+          <td>Correcting hreflang tags across 6 pages to ensure Google serves the right language version</td>
+        </tr>
+
+        <tr data-status="in-progress">
+          <td><strong>Schema Markup Warnings</strong></td>
+          <td><span class="badge cat">Technical</span></td>
+          <td><div class="status-cell"><span class="status-dot yellow"></span><span class="badge in-progress">In Progress</span></div></td>
+          <td>Q2 2026</td>
+          <td>Implementing structured data fixes on 4 pages to unlock rich result eligibility</td>
+        </tr>
+
+        <!-- PLANNED -->
+        <tr data-status="planned">
+          <td><strong>GEO / AEO Content Optimization</strong></td>
+          <td><span class="badge cat">Content / AI</span></td>
+          <td><div class="status-cell"><span class="status-dot grey"></span><span class="badge planned">Planned</span></div></td>
+          <td>Q3 2026</td>
+          <td>Optimize content for generative search engines using AI-assisted GEO/AEO frameworks</td>
+        </tr>
+
+        <tr data-status="planned">
+          <td><strong>Bilingual City Page Expansion</strong></td>
+          <td><span class="badge cat">Content / SEO</span></td>
+          <td><div class="status-cell"><span class="status-dot grey"></span><span class="badge planned">Planned</span></div></td>
+          <td>Q3 2026</td>
+          <td>Scale EN/FR city pages at volume using the AI content pipeline built in Q1</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function filterProjects(status) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      document.querySelectorAll('#project-tbody tr').forEach(row => {
+        if (status === 'all' || row.dataset.status === status) {
+          row.classList.remove('hidden');
+        } else {
+          row.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
