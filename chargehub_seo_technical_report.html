@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChargeHub – Technical SEO Progress Report</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a18; padding: 24px; max-width: 960px; margin: 0 auto; }
+
+    h1 { font-size: 18px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+    .report-meta { font-size: 12px; color: #8a8880; margin-bottom: 24px; }
+
+    /* Tabs */
+    .tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+    .tab { padding: 7px 14px; font-size: 12px; font-weight: 500; border-radius: 6px; cursor: pointer; border: 0.5px solid #d4d2cc; background: transparent; color: #5F5E5A; transition: all .15s; font-family: inherit; }
+    .tab:hover { background: #f5f4f2; }
+    .tab.active { background: #e8f0fb; color: #185FA5; border-color: #adc8ee; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* Panel desc */
+    .panel-desc { font-size: 13px; color: #5F5E5A; margin-bottom: 14px; line-height: 1.5; }
+    .source-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #f5f4f2; color: #8a8880; margin-right: 4px; }
+
+    /* Metric grid */
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .metric { background: #f5f4f2; border-radius: 8px; padding: 12px 14px; }
+    .metric .label { font-size: 11px; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; }
+    .metric .val { font-size: 22px; font-weight: 500; color: #1a1a18; margin-top: 2px; }
+    .metric .val.green { color: #1D9E75; }
+    .metric .val.blue { color: #185FA5; }
+    .metric .val.orange { color: #D97706; }
+    .metric .sub { font-size: 11px; color: #5F5E5A; margin-top: 1px; }
+
+    /* Issue table */
+    .issue-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+    .issue-table th { text-align: left; font-size: 11px; font-weight: 500; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; padding: 8px 12px; border-bottom: 1px solid #e8e6e2; }
+    .issue-table td { padding: 10px 12px; border-bottom: 1px solid #f0ede8; color: #3a3a38; vertical-align: middle; }
+    .issue-table tr:last-child td { border-bottom: none; }
+    .issue-table tr:hover td { background: #fafaf8; }
+
+    /* Badges */
+    .badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 2px 8px; border-radius: 20px; }
+    .badge.fixed { background: #E1F5EE; color: #0F6E56; }
+    .badge.in-progress { background: #FEF3C7; color: #92400E; }
+    .badge.to-fix { background: #FEE2E2; color: #991B1B; }
+
+    /* Progress bar */
+    .progress-wrap { margin-bottom: 16px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #5F5E5A; margin-bottom: 5px; }
+    .progress-track { height: 8px; background: #f0ede8; border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
+
+    /* Speed cards */
+    .speed-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .speed-card { background: #f5f4f2; border-radius: 8px; padding: 16px; }
+    .speed-card h4 { font-size: 12px; font-weight: 500; color: #8a8880; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 12px; }
+    .speed-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .speed-row .metric-name { font-size: 12px; color: #5F5E5A; width: 120px; flex-shrink: 0; }
+    .speed-row .bar-wrap { flex: 1; height: 6px; background: #e8e6e2; border-radius: 3px; overflow: hidden; }
+    .speed-row .bar { height: 100%; border-radius: 3px; }
+    .speed-row .score { font-size: 12px; font-weight: 500; width: 36px; text-align: right; }
+    .score.good { color: #1D9E75; }
+    .score.needs-work { color: #D97706; }
+    .score.poor { color: #DC2626; }
+    .before-after { display: flex; gap: 6px; align-items: center; font-size: 11px; color: #8a8880; margin-top: 4px; }
+    .before-after .arrow { color: #1D9E75; font-weight: 600; }
+
+    /* AI tools */
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 8px; }
+    .tool-card { background: #f5f4f2; border-radius: 8px; padding: 14px; border-left: 3px solid #185FA5; }
+    .tool-card .tool-name { font-size: 13px; font-weight: 500; color: #1a1a18; margin-bottom: 4px; }
+    .tool-card .tool-desc { font-size: 12px; color: #5F5E5A; line-height: 1.5; }
+    .tool-card .tool-impact { font-size: 11px; color: #1D9E75; margin-top: 6px; font-weight: 500; }
+
+    /* Legend */
+    .legend-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; font-size: 12px; color: #5F5E5A; }
+    .legend-row span { display: flex; align-items: center; gap: 5px; }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+    .chart-wrap { position: relative; width: 100%; }
+
+    @media (max-width: 600px) {
+      .speed-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Technical SEO — Progress Report</h1>
+  <div class="report-meta">ChargeHub · Q1–Q2 2026 · Web Performance & Growth</div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showTab(0)">1. Overview</button>
+    <button class="tab" onclick="showTab(1)">2. Redirects & 404s</button>
+    <button class="tab" onclick="showTab(2)">3. Page Speed</button>
+    <button class="tab" onclick="showTab(3)">4. AI Tools Built</button>
+  </div>
+
+  <!-- PANEL 1: Overview -->
+  <div class="panel active" id="p0">
+    <div class="panel-desc">
+      <span class="source-tag">GSC</span><span class="source-tag">PageSpeed Insights</span><span class="source-tag">GA4</span>
+      High-level snapshot of technical SEO progress. Issues resolved, in-progress, and impact on organic performance.
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="label">301 Loop Fixes</div><div class="val green">8</div><div class="sub">All loops resolved</div></div>
+      <div class="metric"><div class="label">404s Fixed</div><div class="val green">4</div><div class="sub">Blogs, guides, countries, stations</div></div>
+      <div class="metric"><div class="label">Avg Speed Score</div><div class="val green">+22pts</div><div class="sub">Mobile improvement</div></div>
+      <div class="metric"><div class="label">Page Speed targets</div><div class="val orange">6/10</div><div class="sub">Metrics hit</div></div>
+    </div>
+
+
+
+    <div class="chart-wrap" style="height:220px;margin-top:16px"><canvas id="c_overview"></canvas></div>
+  </div>
+
+  <!-- PANEL 2: Redirects & 404s -->
+  <div class="panel" id="p1">
+    <div class="panel-desc">
+      <span class="source-tag">GSC</span><span class="source-tag">Screaming Frog</span>
+      All redirect chains, 404 errors, and redirect loops identified and resolved. Cleaner crawl path means better indexing.
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="label">301 Loop Fixes</div><div class="val green">8</div><div class="sub">All loops resolved</div></div>
+      <div class="metric"><div class="label">404 Blogs Fixed</div><div class="val green">✓</div><div class="sub">Redirected to live content</div></div>
+      <div class="metric"><div class="label">404 Guides Fixed</div><div class="val green">✓</div><div class="sub">Redirected to live content</div></div>
+      <div class="metric"><div class="label">404 Countries Fixed</div><div class="val green">✓</div><div class="sub">Redirected to live content</div></div>
+      <div class="metric"><div class="label">404 Stations Fixed</div><div class="val green">✓</div><div class="sub">Redirected to live content</div></div>
+    </div>
+
+    <table class="issue-table">
+      <thead>
+        <tr>
+          <th>Issue Type</th>
+          <th>Pages Affected</th>
+          <th>Action Taken</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>301 loop — A→B→A redirect loops</td><td>5 URL pairs</td><td>Identified root cause, rewrote redirect rules</td><td><span class="badge fixed">Fixed</span></td></tr>
+        <tr><td>301 loop — HTTP→HTTPS loops</td><td>3 URLs</td><td>Server-level HTTPS enforcement corrected</td><td><span class="badge fixed">Fixed</span></td></tr>
+        <tr><td>404 — Blog pages</td><td>Placeholder</td><td>Redirected to relevant live blog content</td><td><span class="badge fixed">Fixed</span></td></tr>
+        <tr><td>404 — Guide pages</td><td>Placeholder</td><td>Redirected to updated guide equivalents</td><td><span class="badge fixed">Fixed</span></td></tr>
+        <tr><td>404 — Country pages</td><td>Placeholder</td><td>Redirected to active country/region pages</td><td><span class="badge fixed">Fixed</span></td></tr>
+        <tr><td>404 — Station pages</td><td>Placeholder</td><td>Redirected to nearest active station pages</td><td><span class="badge fixed">Fixed</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PANEL 3: Page Speed -->
+  <div class="panel" id="p2">
+    <div class="panel-desc">
+      <span class="source-tag">PageSpeed Insights</span><span class="source-tag">Core Web Vitals</span>
+      Before and after scores for key page templates. Mobile performance is the primary ranking signal.
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="label">Mobile Score Avg</div><div class="val green">61 → 83</div><div class="sub">+22 points improvement</div></div>
+      <div class="metric"><div class="label">Desktop Score Avg</div><div class="val green">74 → 91</div><div class="sub">+17 points improvement</div></div>
+      <div class="metric"><div class="label">LCP (Mobile)</div><div class="val green">4.1s → 2.3s</div><div class="sub">Now passing threshold</div></div>
+      <div class="metric"><div class="label">CLS</div><div class="val green">0.18 → 0.04</div><div class="sub">Good range achieved</div></div>
+    </div>
+
+    <div class="speed-grid">
+      <div class="speed-card">
+        <h4>📱 Mobile — Before</h4>
+        <div class="speed-row"><span class="metric-name">Performance</span><div class="bar-wrap"><div class="bar" style="width:61%;background:#D97706"></div></div><span class="score needs-work">61</span></div>
+        <div class="speed-row"><span class="metric-name">Accessibility</span><div class="bar-wrap"><div class="bar" style="width:74%;background:#D97706"></div></div><span class="score needs-work">74</span></div>
+        <div class="speed-row"><span class="metric-name">Best Practices</span><div class="bar-wrap"><div class="bar" style="width:67%;background:#D97706"></div></div><span class="score needs-work">67</span></div>
+        <div class="speed-row"><span class="metric-name">SEO</span><div class="bar-wrap"><div class="bar" style="width:78%;background:#D97706"></div></div><span class="score needs-work">78</span></div>
+      </div>
+      <div class="speed-card">
+        <h4>📱 Mobile — After</h4>
+        <div class="speed-row"><span class="metric-name">Performance</span><div class="bar-wrap"><div class="bar" style="width:83%;background:#1D9E75"></div></div><span class="score good">83</span></div>
+        <div class="speed-row"><span class="metric-name">Accessibility</span><div class="bar-wrap"><div class="bar" style="width:91%;background:#1D9E75"></div></div><span class="score good">91</span></div>
+        <div class="speed-row"><span class="metric-name">Best Practices</span><div class="bar-wrap"><div class="bar" style="width:89%;background:#1D9E75"></div></div><span class="score good">89</span></div>
+        <div class="speed-row"><span class="metric-name">SEO</span><div class="bar-wrap"><div class="bar" style="width:96%;background:#1D9E75"></div></div><span class="score good">96</span></div>
+      </div>
+      <div class="speed-card">
+        <h4>🖥️ Desktop — Before</h4>
+        <div class="speed-row"><span class="metric-name">Performance</span><div class="bar-wrap"><div class="bar" style="width:74%;background:#D97706"></div></div><span class="score needs-work">74</span></div>
+        <div class="speed-row"><span class="metric-name">Accessibility</span><div class="bar-wrap"><div class="bar" style="width:80%;background:#D97706"></div></div><span class="score needs-work">80</span></div>
+        <div class="speed-row"><span class="metric-name">Best Practices</span><div class="bar-wrap"><div class="bar" style="width:72%;background:#D97706"></div></div><span class="score needs-work">72</span></div>
+        <div class="speed-row"><span class="metric-name">SEO</span><div class="bar-wrap"><div class="bar" style="width:83%;background:#D97706"></div></div><span class="score needs-work">83</span></div>
+      </div>
+      <div class="speed-card">
+        <h4>🖥️ Desktop — After</h4>
+        <div class="speed-row"><span class="metric-name">Performance</span><div class="bar-wrap"><div class="bar" style="width:91%;background:#1D9E75"></div></div><span class="score good">91</span></div>
+        <div class="speed-row"><span class="metric-name">Accessibility</span><div class="bar-wrap"><div class="bar" style="width:95%;background:#1D9E75"></div></div><span class="score good">95</span></div>
+        <div class="speed-row"><span class="metric-name">Best Practices</span><div class="bar-wrap"><div class="bar" style="width:92%;background:#1D9E75"></div></div><span class="score good">92</span></div>
+        <div class="speed-row"><span class="metric-name">SEO</span><div class="bar-wrap"><div class="bar" style="width:98%;background:#1D9E75"></div></div><span class="score good">98</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 5: AI Tools -->
+  <div class="panel" id="p3">
+    <div class="panel-desc">
+      <span class="source-tag">Internal</span><span class="source-tag">AI-Assisted</span>
+      Internal tools and workflows built using AI to accelerate SEO operations, reduce manual effort, and improve output quality.
+    </div>
+    <div class="metric-grid">
+      <div class="metric"><div class="label">Tools Built</div><div class="val blue">5</div><div class="sub">Q1–Q2 2026</div></div>
+      <div class="metric"><div class="label">Hours Saved / Mo</div><div class="val green">~40h</div><div class="sub">Estimated team time</div></div>
+      <div class="metric"><div class="label">Tasks Automated</div><div class="val green">8</div><div class="sub">Previously manual</div></div>
+      <div class="metric"><div class="label">Languages</div><div class="val blue">EN + FR</div><div class="sub">Bilingual output</div></div>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-name">City Page Content Generator</div>
+        <div class="tool-desc">AI workflow that generates bilingual (EN/FR) SEO-optimized content for EV charging location pages at scale.</div>
+        <div class="tool-impact">↓ 85% content production time</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Redirect Audit Classifier</div>
+        <div class="tool-desc">Automated script that ingests crawl data and classifies redirect chains, loops, and 404s by priority and fix type.</div>
+        <div class="tool-impact">32 issues resolved in 2 days vs. 2 weeks</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">GSC Issue Triage Tool</div>
+        <div class="tool-desc">Pulls Search Console data via API and categorizes coverage errors by impact level, with suggested fix actions.</div>
+        <div class="tool-impact">Weekly reporting automated</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Meta Tag Optimizer</div>
+        <div class="tool-desc">Generates optimized title tags and meta descriptions for EN and FR pages using keyword + intent signals.</div>
+        <div class="tool-impact">200+ pages updated in one sprint</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-name">Schema Markup Builder</div>
+        <div class="tool-desc">Builds structured data (LocalBusiness, FAQPage, BreadcrumbList) for HubSpot templates with validation output.</div>
+        <div class="tool-impact">Rich result eligibility on 40+ pages</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script>
+    const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    const grid = isDark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.06)';
+    const txtC = isDark ? '#c2c0b6' : '#5F5E5A';
+
+    function showTab(i) {
+      document.querySelectorAll('.tab').forEach((t,j) => t.classList.toggle('active', j===i));
+      document.querySelectorAll('.panel').forEach((p,j) => p.classList.toggle('active', j===i));
+    }
+
+    new Chart(document.getElementById('c_overview'), {
+      type: 'bar',
+      data: {
+        labels: ['301 Loops', '404 Blogs', '404 Guides', '404 Countries', '404 Stations', 'Speed Wins'],
+        datasets: [
+          { label: 'Completed', data: [8, 1, 1, 1, 1, 6], backgroundColor: '#1D9E75', borderRadius: 3 },
+          { label: 'In Progress / To Fix', data: [0, 0, 0, 0, 0, 4], backgroundColor: '#D97706', borderRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: true, position: 'top', labels: { color: txtC, font: { size: 11 }, boxWidth: 12, padding: 16 } },
+          tooltip: { mode: 'index', intersect: false }
+        },
+        scales: {
+          x: { stacked: true, grid: { display: false }, ticks: { color: txtC, font: { size: 11 } } },
+          y: { stacked: true, grid: { color: grid }, ticks: { color: txtC, font: { size: 11 } } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
