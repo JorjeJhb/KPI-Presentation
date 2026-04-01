@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChargeHub – Technical SEO Summary</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a18; padding: 32px 24px; max-width: 960px; margin: 0 auto; }
+
+    .report-header { margin-bottom: 28px; border-bottom: 1px solid #e8e6e2; padding-bottom: 16px; }
+    h1 { font-size: 18px; font-weight: 600; color: #1a1a18; margin-bottom: 4px; }
+    .report-meta { font-size: 12px; color: #8a8880; }
+
+    /* Column layout */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .col-card { background: #f5f4f2; border-radius: 10px; padding: 20px; }
+    .col-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .col-header .col-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .col-header .col-icon.green { background: #E1F5EE; }
+    .col-header .col-icon.orange { background: #FEF3C7; }
+    .col-header h2 { font-size: 13px; font-weight: 600; color: #1a1a18; }
+    .col-header .col-count { margin-left: auto; font-size: 11px; color: #8a8880; }
+
+    /* Bullet items */
+    .bullet-list { display: flex; flex-direction: column; gap: 10px; }
+    .bullet-item { display: flex; align-items: flex-start; gap: 10px; background: #fff; border-radius: 7px; padding: 10px 12px; border: 0.5px solid #e8e6e2; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+    .bullet-dot.green { background: #1D9E75; }
+    .bullet-dot.orange { background: #D97706; }
+    .bullet-dot.blue { background: #185FA5; }
+    .bullet-text { flex: 1; }
+    .bullet-text .main { font-size: 13px; color: #1a1a18; line-height: 1.4; }
+    .bullet-text .sub { font-size: 11px; color: #8a8880; margin-top: 2px; }
+
+    /* Indicator badges */
+    .indicators { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+    .ind { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; font-weight: 500; padding: 2px 7px; border-radius: 20px; }
+    .ind.high { background: #FEE2E2; color: #991B1B; }
+    .ind.medium { background: #FEF3C7; color: #92400E; }
+    .ind.low { background: #E1F5EE; color: #0F6E56; }
+    .ind.track { background: #E8F0FB; color: #185FA5; }
+    .ind.tbd { background: #f0ede8; color: #8a8880; }
+
+    /* Legend */
+    .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #e8e6e2; font-size: 11px; color: #5F5E5A; }
+    .legend span { display: flex; align-items: center; gap: 5px; }
+    .legend .ld { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+
+    .source-tag { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: #f5f4f2; color: #8a8880; margin-right: 4px; }
+    .panel-desc { font-size: 13px; color: #5F5E5A; margin-bottom: 20px; line-height: 1.5; }
+
+    @media (max-width: 620px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="report-header">
+    <h1>Technical SEO — Summary</h1>
+    <div class="report-meta">ChargeHub · Q1–Q2 2026 · Web Performance & Growth</div>
+  </div>
+
+  <div class="panel-desc">
+    <span class="source-tag">GSC</span><span class="source-tag">PageSpeed Insights</span><span class="source-tag">Internal</span>
+    A snapshot of what the team resolved and what lies ahead — with indicators to track priority and future storytelling.
+  </div>
+
+  <div class="two-col">
+
+    <!-- LEFT: Wins -->
+    <div class="col-card">
+      <div class="col-header">
+        <div class="col-icon green">✓</div>
+        <h2>What we did</h2>
+        <span class="col-count">6 items</span>
+      </div>
+      <div class="bullet-list">
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">Resolved 8 x 301 redirect loops</div>
+            <div class="sub">A→B→A loops + HTTP→HTTPS conflicts fixed at server level</div>
+            <div class="indicators">
+              <span class="ind high">High impact</span>
+              <span class="ind track">Track crawl rate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">Fixed 404s — Blogs, Guides, Countries, Stations</div>
+            <div class="sub">Broken pages redirected to relevant live content</div>
+            <div class="indicators">
+              <span class="ind high">High impact</span>
+              <span class="ind track">Track indexed pages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">Mobile performance +22 pts (avg)</div>
+            <div class="sub">Core Web Vitals improvements across key page templates</div>
+            <div class="indicators">
+              <span class="ind high">High impact</span>
+              <span class="ind track">Track LCP / CLS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">Desktop performance +17 pts (avg)</div>
+            <div class="sub">SEO score reached 98 on desktop after fixes</div>
+            <div class="indicators">
+              <span class="ind medium">Medium impact</span>
+              <span class="ind track">Track rankings</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">5 internal AI tools built</div>
+            <div class="sub">Bilingual content gen, redirect classifier, schema builder & more</div>
+            <div class="indicators">
+              <span class="ind medium">Medium impact</span>
+              <span class="ind track">Track hours saved</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot green"></div>
+          <div class="bullet-text">
+            <div class="main">~40h/month saved via automation</div>
+            <div class="sub">8 previously manual SEO tasks now handled by AI workflows</div>
+            <div class="indicators">
+              <span class="ind low">Efficiency gain</span>
+              <span class="ind tbd">Impact TBD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: What's next -->
+    <div class="col-card">
+      <div class="col-header">
+        <div class="col-icon orange">→</div>
+        <h2>What's ahead</h2>
+        <span class="col-count">5 items</span>
+      </div>
+      <div class="bullet-list">
+
+        <div class="bullet-item">
+          <div class="bullet-dot orange"></div>
+          <div class="bullet-text">
+            <div class="main">Page speed — 4 remaining metrics</div>
+            <div class="sub">INP, FID, and render-blocking resources still to optimize</div>
+            <div class="indicators">
+              <span class="ind high">High priority</span>
+              <span class="ind tbd">KPI TBD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot orange"></div>
+          <div class="bullet-text">
+            <div class="main">Mobile usability errors (9 pages)</div>
+            <div class="sub">Tap targets + viewport issues affecting mobile rankings</div>
+            <div class="indicators">
+              <span class="ind medium">Medium priority</span>
+              <span class="ind track">Track GSC mobile report</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot orange"></div>
+          <div class="bullet-text">
+            <div class="main">Hreflang errors — EN/FR pages</div>
+            <div class="sub">Bilingual indexing signals need alignment across templates</div>
+            <div class="indicators">
+              <span class="ind medium">Medium priority</span>
+              <span class="ind tbd">KPI TBD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot orange"></div>
+          <div class="bullet-text">
+            <div class="main">Schema markup warnings (4 pages)</div>
+            <div class="sub">Rich result eligibility blocked on key content pages</div>
+            <div class="indicators">
+              <span class="ind low">Low priority</span>
+              <span class="ind track">Track rich results</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bullet-item">
+          <div class="bullet-dot blue"></div>
+          <div class="bullet-text">
+            <div class="main">Define KPIs & storytelling indicators</div>
+            <div class="sub">Align team on what to track: importance tiers, future metrics</div>
+            <div class="indicators">
+              <span class="ind tbd">To define</span>
+              <span class="ind tbd">Storytelling TBD</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Indicator legend -->
+  <div class="legend">
+    <span><span class="ld" style="background:#991B1B"></span> High impact/priority</span>
+    <span><span class="ld" style="background:#D97706"></span> Medium impact/priority</span>
+    <span><span class="ld" style="background:#1D9E75"></span> Efficiency / low priority</span>
+    <span><span class="ld" style="background:#185FA5"></span> To track</span>
+    <span><span class="ld" style="background:#c4c2bc"></span> Indicator TBD</span>
+  </div>
+
+</body>
+</html>
